@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Form</title>
+  <style>
+    h2 {
+      padding-left: 300px;
+    }
+
+    .outer-box {
+      border: 1px solid black;
+      width: 300px;
+      margin-left: 130px;
+      padding: 10px;
+    }
+
+    td {
+      border: 1px double gray;
+      padding: 5px;
+    }
+
+    button {
+      background-color: darkcyan;
+      color: white;
+      width: 100px;
+      padding: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #studenttable {
+      border-collapse: collapse;
+      width: 60%;
+      margin-top: 40px;
+      border: 1px double gray;
+      margin-left: 150px;
+    }
+
+    #studenttable th, #studenttable td {
+      border: 1px solid gray;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Student form</h2>
+  <div class="outer-box">
+    <form>
+      <table id="formtable">
+        <tr>
+          <td><label for="name">Name:</label></td>
+          <td><input type="text" id="name"></td>
+        </tr>
+
+        <tr>
+          <td><label for="age">Age:</label></td>
+          <td><input type="number" id="age"></td>
+        </tr>
+
+        <tr>
+          <td><label for="gender">Gender:</label></td>
+          <td>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="course">Course:</label></td>
+          <td>
+            <select id="course">
+              <option>JavaScript</option>
+              <option>Python</option>
+              <option>C++</option>
+              <option>Java</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="email">Email:</label></td>
+          <td><input type="email" id="email"></td>
+        </tr>
+
+        <tr>
+          <td colspan="2" style="text-align:center;">
+            <button onclick="addstudent(event)">Save</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <table id="studenttable">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Course</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </table>
+
+  <script>
+    function addstudent(event) {
+      event.preventDefault();
+
+      var name = document.getElementById("name").value;
+      var age = document.getElementById("age").value;
+      var course = document.getElementById("course").value;
+      var email = document.getElementById("email").value;
+      var gender = document.querySelector('input[name="gender"]:checked');
+
+      if (!gender) {
+        alert("Please select gender!");
+        return;
+      }
+
+      var table = document.getElementById("studenttable");
+      var newRow = table.insertRow();
+
+      newRow.insertCell(0).innerText = name;
+      newRow.insertCell(1).innerText = age;
+      newRow.insertCell(2).innerText = course;
+      newRow.insertCell(3).innerText = gender.value;
+      newRow.insertCell(4).innerText = email;
+
+      // Action button
+      let actionCell = newRow.insertCell(5);
+      let delBtn = document.createElement("button");
+      delBtn.innerText = "Delete";
+      delBtn.style.background = "red";
+      delBtn.style.color = "white";
+      delBtn.onclick = function () {
+        table.deleteRow(newRow.rowIndex);
+      };
+      actionCell.appendChild(delBtn);
+    }
+  </script>
+</body>
+</html>
