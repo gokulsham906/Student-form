@@ -5,42 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Form</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
     h2 {
-      padding-left: 300px;
+      text-align: center;
+      margin: 20px 0;
     }
 
     .outer-box {
       border: 1px solid black;
-      width: 300px;
-      margin-left: 130px;
-      padding: 10px;
+      max-width: 400px;
+      margin: auto;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f9f9f9;
     }
 
     td {
-      border: 1px double gray;
-      padding: 5px;
+      border: none;
+      padding: 8px;
     }
 
     button {
       background-color: darkcyan;
       color: white;
-      width: 100px;
-      padding: 5px;
+      width: 100%;
+      padding: 10px;
       border: none;
       cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
     }
 
     #studenttable {
       border-collapse: collapse;
-      width: 60%;
-      margin-top: 40px;
-      border: 1px double gray;
-      margin-left: 150px;
+      width: 90%;
+      margin: 20px auto;
+      border: 1px solid gray;
     }
 
-    #studenttable th, #studenttable td {
+    #studenttable th, 
+    #studenttable td {
       border: 1px solid gray;
-      padding: 5px;
+      padding: 8px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    #studenttable th {
+      background-color: #f2f2f2;
+    }
+
+    /* ✅ Responsive adjustments */
+    @media (max-width: 600px) {
+      .outer-box {
+        width: 95%;
+        margin: 10px auto;
+        padding: 10px;
+      }
+
+      table {
+        width: 100%;
+      }
+
+      #studenttable {
+        font-size: 12px;
+        width: 100%;
+      }
+
+      #studenttable th, 
+      #studenttable td {
+        padding: 5px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 8px;
+      }
+
+      /* Make table scrollable horizontally if too wide */
+      .table-container {
+        overflow-x: auto;
+      }
     }
   </style>
 </head>
@@ -94,16 +144,18 @@
     </form>
   </div>
 
-  <table id="studenttable">
-    <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Course</th>
-      <th>Gender</th>
-      <th>Email</th>
-      <th>Action</th>
-    </tr>
-  </table>
+  <div class="table-container">
+    <table id="studenttable">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Course</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </table>
+  </div>
 
   <script>
     function addstudent(event) {
@@ -135,6 +187,9 @@
       delBtn.innerText = "Delete";
       delBtn.style.background = "red";
       delBtn.style.color = "white";
+      delBtn.style.border = "none";
+      delBtn.style.padding = "5px 10px";
+      delBtn.style.cursor = "pointer";
       delBtn.onclick = function () {
         table.deleteRow(newRow.rowIndex);
       };
