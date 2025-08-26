@@ -47,22 +47,22 @@
 <body>
   <h2>Student form</h2>
   <div class="outer-box">
-    <form>
+    <form id="studentForm">
       <table id="formtable">
         <tr>
           <td><label for="name">Name:</label></td>
-          <td><input type="text" id="name"></td>
+          <td><input type="text" id="name" required></td>
         </tr>
 
         <tr>
           <td><label for="age">Age:</label></td>
-          <td><input type="number" id="age"></td>
+          <td><input type="number" id="age" required></td>
         </tr>
 
         <tr>
           <td><label for="gender">Gender:</label></td>
           <td>
-            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Male" required> Male
             <input type="radio" name="gender" value="Female"> Female
           </td>
         </tr>
@@ -70,7 +70,8 @@
         <tr>
           <td><label for="course">Course:</label></td>
           <td>
-            <select id="course">
+            <select id="course" required>
+              <option value="">Select</option>
               <option>JavaScript</option>
               <option>Python</option>
               <option>C++</option>
@@ -81,7 +82,7 @@
 
         <tr>
           <td><label for="email">Email:</label></td>
-          <td><input type="email" id="email"></td>
+          <td><input type="email" id="email" required></td>
         </tr>
 
         <tr>
@@ -138,6 +139,9 @@
         table.deleteRow(newRow.rowIndex);
       };
       actionCell.appendChild(delBtn);
+
+      // ✅ Clear form after submit
+      document.getElementById("studentForm").reset();
     }
   </script>
 </body>
